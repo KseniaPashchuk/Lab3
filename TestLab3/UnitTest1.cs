@@ -14,29 +14,31 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            boolVectors = new List<BoolVector>();
-            boolVectors.Add(new BoolVector(new List<int>() { 0, 1, 1, 0 }));
-            boolVectors.Add(new BoolVector(new List<int>() { 0, 0, 1, 0 }));
-            boolVectors.Add(new BoolVector(new List<int>() { 1, 1, 1, 0 }));
-            boolVectors.Add(new BoolVector(new List<int>() { 0, 1, 0, 0 }));
-            boolVectors.Add(new BoolVector(new List<int>() { 1, 1, 1, 0 }));
+            boolVectors = new List<BoolVector>
+            {
+                new BoolVector(new List<int>() { 0, 1, 1, 0 }),
+                new BoolVector(new List<int>() { 0, 0, 1, 0 }),
+                new BoolVector(new List<int>() { 1, 1, 1, 0 }),
+                new BoolVector(new List<int>() { 0, 1, 0, 0 }),
+                new BoolVector(new List<int>() { 1, 1, 1, 0 })
+            };
         }
 
         [Test]
-         public void test_conjunction()
+         public void Test_conjunction()
         {
             BoolVector expectedResult = new BoolVector(new List<int>() { 0, 0, 0, 0 });
-            BoolVector actualResult = BoolVectorAction.conjunction(boolVectors);
+            BoolVector actualResult = BoolVectorAction.Conjunction(boolVectors);
             Assert.IsTrue(expectedResult.Components.SequenceEqual(actualResult.Components));
         }
 
         [Test]
-        public void test_conjunctionNegative()
+        public void Test_conjunctionNegative()
         {
             try
             {
                 boolVectors.Add(new BoolVector(new List<int>() { 0, 1, 1, 0, 1 }));
-                BoolVector actualResult = BoolVectorAction.conjunction(boolVectors);
+                BoolVector actualResult = BoolVectorAction.Conjunction(boolVectors);
             }
             catch (ArgumentException ex)
             {
@@ -50,20 +52,20 @@ namespace Tests
         }
 
         [Test]
-        public void test_disjunction()
+        public void Test_disjunction()
         {
             BoolVector expectedResult = new BoolVector(new List<int>() { 1, 1, 1, 0 });
-            BoolVector actualResult = BoolVectorAction.disjunction(boolVectors);
+            BoolVector actualResult = BoolVectorAction.Disjunction(boolVectors);
             Assert.IsTrue(expectedResult.Components.SequenceEqual(actualResult.Components));
         }
 
         [Test]
-        public void test_disjunctionNegative()
+        public void Test_disjunctionNegative()
         {
             try
             {
                 boolVectors.Add(new BoolVector(new List<int>() { 0, 1, 1, 0, 1 }));
-                BoolVector actualResult = BoolVectorAction.disjunction(boolVectors);
+                BoolVector actualResult = BoolVectorAction.Disjunction(boolVectors);
             }
             catch (ArgumentException ex)
             {
@@ -77,24 +79,24 @@ namespace Tests
         }
 
         [Test]
-        public void test_negation()
+        public void Test_negation()
         {
             BoolVector expectedResult = new BoolVector(new List<int>() { 0, 0, 0, 1 });
-            BoolVector actualResult = BoolVectorAction.vectorNegation(boolVectors[4]);
+            BoolVector actualResult = BoolVectorAction.VectorNegation(boolVectors[4]);
             Assert.IsTrue(expectedResult.Components.SequenceEqual(actualResult.Components));
         }
 
         [Test]
-        public void test_getNumberOfZeros()
+        public void Test_getNumberOfZeros()
         {
-            int result = boolVectors[0].getNumberOfZeros();
+            int result = boolVectors[0].GetNumberOfZeros();
             Assert.AreEqual(2, result);
         }
 
         [Test]
-        public void test_getNumberOfOne()
+        public void Test_getNumberOfOne()
         {
-            int result = boolVectors[0].getNumberOfOne();
+            int result = boolVectors[0].GetNumberOfOne();
             Assert.AreEqual(2, result);
         }
     }

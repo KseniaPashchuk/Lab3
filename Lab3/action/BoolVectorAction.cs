@@ -11,27 +11,27 @@ namespace Lab3.action
     {
         delegate int ActionDelegate(int a, int b);
 
-        public static BoolVector conjunction(List<BoolVector> vectors)
+        public static BoolVector Conjunction(List<BoolVector> vectors)
         {
-            return calculateAction(vectors, new ActionDelegate(elementConjunction));
+            return CalculateAction(vectors, new ActionDelegate(ElementConjunction));
         }
 
-        public static BoolVector disjunction(List<BoolVector> vectors)
+        public static BoolVector Disjunction(List<BoolVector> vectors)
         {
-            return calculateAction(vectors, new ActionDelegate(elementDisjunction));
+            return CalculateAction(vectors, new ActionDelegate(ElementDisjunction));
         }
 
-        public static List<BoolVector> negation(List<BoolVector> vectors)
+        public static List<BoolVector> Negation(List<BoolVector> vectors)
         {
             List<BoolVector> resultVectors = new List<BoolVector>();
             foreach (BoolVector vector in vectors)
             {
-                resultVectors.Add(vectorNegation(vector));
+                resultVectors.Add(VectorNegation(vector));
             }
             return resultVectors;
         }
 
-        public static BoolVector vectorNegation(BoolVector vector)
+        public static BoolVector VectorNegation(BoolVector vector)
         {
             BoolVector resultVector = new BoolVector(vector.Components.Count);
             foreach (int comp in vector.Components)
@@ -41,7 +41,7 @@ namespace Lab3.action
             return resultVector;
         }
 
-        private static BoolVector calculateAction(List<BoolVector> vectors, ActionDelegate action)
+        private static BoolVector CalculateAction(List<BoolVector> vectors, ActionDelegate action)
         {
             int size = vectors[0].Components.Count;
             foreach (BoolVector vector in vectors)
@@ -63,12 +63,12 @@ namespace Lab3.action
             return resultVector;
         }
 
-        private static int elementConjunction(int a, int b)
+        private static int ElementConjunction(int a, int b)
         {
             return a & b;
         }
 
-        private static int elementDisjunction(int a, int b)
+        private static int ElementDisjunction(int a, int b)
         {
             return a | b;
         }

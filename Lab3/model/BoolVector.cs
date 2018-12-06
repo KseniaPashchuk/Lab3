@@ -26,16 +26,16 @@ namespace Lab3.model
 
         public List<int> Components { get => components; set => components = value; }
 
-        public int getNumberOfZeros()
+        public int GetNumberOfZeros()
         {
             List<int> allZeros = Components.FindAll(x => x == 0);
             
             return allZeros.Count;
         }
 
-        public int getNumberOfOne()
+        public int GetNumberOfOne()
         {
-            return Components.Count() - getNumberOfZeros();
+            return Components.Count() - GetNumberOfZeros();
         }
     }
 }
